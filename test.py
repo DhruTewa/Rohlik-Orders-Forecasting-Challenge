@@ -1,2 +1,2 @@
-from rohlik_forecasting.compoments.data_ingestion import main
+from rohlik_forecasting.components.data_ingestion import main
 main()
