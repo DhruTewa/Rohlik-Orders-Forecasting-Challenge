@@ -6,6 +6,8 @@ import dill
 import yaml
 from rohlik_forecasting.logger import logging
 from rohlik_forecasting.exception import RohlikForecastException
+from rohlik_forecasting import logger
+from pathlib import Path
 
 def initial_analysis(dataset):
     #shape of the dataset
@@ -139,3 +141,31 @@ def drop_columns(df: DataFrame, cols: list)-> DataFrame:
         return df
     except Exception as e:
         raise RohlikForecastException(e, sys) from e
+    
+############################################################################################################
+
+def create_directories(path_to_directories: list, verbose=True):
+    """create list of directories
+
+    Args:
+        path_to_directories (list): list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False.
+    """
+    for path in path_to_directories:
+        os.makedirs(path, exist_ok=True)
+        if verbose:
+            logging.info(f"created directory at: {path}")
+            
+############################################################################################################
+
+def get_size(path: Path) -> str:
+    """get size in KB
+
+    Args:
+        path (Path): path of the file
+
+    Returns:
+        str: size in KB
+    """
+    size_in_kb = round(os.path.getsize(path)/1024)
+    return f"~ {size_in_kb} KB"

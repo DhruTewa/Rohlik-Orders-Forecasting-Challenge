@@ -1,8 +1,9 @@
 from rohlik_forecasting.logger import logging
-from rohlik_forecasting.exception import RohlikForecastException
-import sys
-try:
-    a=1/"10"
-except Exception as e:  
-    logging.info(e)
-    raise RohlikForecastException(e,sys) from e
+from rohlik_forecasting.constants import COMPETITION_NAME
+from rohlik_forecasting.configuration.kaggle_connection import KaggleAPIConnection
+
+kaggleapi = KaggleAPIConnection()
+logging.info(f'Kaggle API connection established')
+kaggleapi.api.competition_download_files(COMPETITION_NAME)
+
+logging.info(f'Competition files downloaded')
