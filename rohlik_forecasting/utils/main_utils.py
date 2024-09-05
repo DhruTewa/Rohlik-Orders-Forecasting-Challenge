@@ -8,6 +8,9 @@ from rohlik_forecasting.logger import logging
 from rohlik_forecasting.exception import RohlikForecastException
 from rohlik_forecasting import logger
 from pathlib import Path
+import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib
 
 def initial_analysis(dataset):
     #shape of the dataset
@@ -28,6 +31,9 @@ def initial_analysis(dataset):
     print("Numerical Features: \n", numeric_features.columns)
     print("Categorical Features: \n", categoric_features.columns)
     print("*"*40)
+    
+
+    
     
     # Missing values
     print(" Number of missing values :\n \n{}".format(dataset.isna().sum()))
@@ -169,3 +175,34 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+############################################################################################################
+
+def set_visualization_settings():
+    # Enlarge the width of the Jupyter notebook for better visual experience
+    # Making the visual more clear and increase the default size of any plot
+    plt.rcParams['figure.figsize'] = (10,6)
+    plt.rcParams['lines.linewidth'] = 2
+    plt.rcParams['font.size'] = 14
+    plt.rcParams['axes.labelsize'] = 14
+    plt.rcParams['xtick.labelsize'] = 12
+    plt.rcParams['ytick.labelsize'] = 12
+    plt.rcParams['axes.facecolor'] = '#f0f0f0'
+    plt.rcParams['axes.edgecolor'] = '#666666'
+    plt.rcParams['grid.color'] = '#cccccc'
+    plt.rcParams['grid.linestyle'] = '-'
+
+    # Define a custom color palette
+    palette = sns.color_palette([
+        '#3498db',  # primary color
+        '#f1c40f',  # secondary color
+        '#e74c3c',  # accent color
+        '#2ecc71',  # success color
+        '#9b59b6'   # info color
+    ])
+
+    # Set the palette for sequential and categorical plots
+    sns.set_palette(palette)
+
+    # Set high resolution for plots
+    get_ipython().run_line_magic('config', 'InlineBackend.figure_format = "retina"')
