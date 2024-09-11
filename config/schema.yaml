@@ -1,0 +1,35 @@
+columns:
+ - warehouse: category
+ - date: category
+ - orders: float
+ - holiday_name: category
+ - holiday: int
+ - shops_closed: int
+ - winter_school_holidays: int
+ - school_holidays: int
+ - id: category
+
+numerical_columns:
+ - holiday
+ - shops_closed 
+ - winter_school_holidays
+ - school_holidays
+ - orders 
+
+categorical_columns:
+ - warehouse
+ - date
+ - holiday_name
+ - id
+
+drop_columns:
+ - date
+ - holiday_name
+ - id
+
+# for data transformation
+
+oh_columns:
+  - warehouse
+  - unit_of_wage
+  - region_of_employment

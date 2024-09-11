@@ -1,9 +1,3 @@
-from rohlik_forecasting.logger import logging
-from rohlik_forecasting.constants import COMPETITION_NAME
-from rohlik_forecasting.configuration.kaggle_connection import KaggleAPIConnection
+from rohlik_forecasting.constants import DATA_INGESTION_FEATURE_STORE_DIR_NAME
 
-kaggleapi = KaggleAPIConnection()
-logging.info(f'Kaggle API connection established')
-kaggleapi.api.competition_download_files(COMPETITION_NAME)
-
-logging.info(f'Competition files downloaded')
+print(DATA_INGESTION_FEATURE_STORE_DIR_NAME)  # feature_store
